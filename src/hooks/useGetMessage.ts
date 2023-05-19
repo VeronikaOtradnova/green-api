@@ -16,7 +16,6 @@ export function useGetMessage() {
       }
     });
     const incommingMessage = await response.json();
-    console.log(incommingMessage);
 
     if (incommingMessage && incommingMessage.body.messageData.typeMessage === 'textMessage' && incommingMessage.body.senderData.chatId === `${chatId}@c.us`) {
       changeAllMessages([...allMessages, {
@@ -24,8 +23,6 @@ export function useGetMessage() {
         className: 'message message_incoming',
         id: Date.now(), 
       }])
-
-      console.log(allMessages);
 
       removeMessageNotification(incommingMessage.receiptId);
     } else if (incommingMessage) {
